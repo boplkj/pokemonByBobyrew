@@ -6,7 +6,7 @@ import connectRedis from 'connect-redis'
 const express = require('express')
 const session = require('express-session')
 const passport = require('passport')
-const redisClient = redis.createClient()
+const redisClient = redis.createClient({host: 'redis-17079.c77.eu-west-1-1.ec2.cloud.redislabs.com', port: 17079, client: redisClient, ttl: 86400, pass:'swalvaD2wpK50DdYsUMrXEA3PNNJS1M' })
 const redisStore  = connectRedis(session)
 const client = getClient()
 
