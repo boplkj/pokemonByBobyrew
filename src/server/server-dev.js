@@ -38,7 +38,7 @@ app.use(session({
     httpOnly: true,
     maxAge: 60 * 60 * 1000
   }, 
-  store: new redisStore({ host: 'localhost', port: 6379, client: redisClient, ttl: 86400 }),
+  store: new redisStore({ host: 'redis-17079.c77.eu-west-1-1.ec2.cloud.redislabs.com', port: 17079, client: redisClient, ttl: 86400, pass:'swalvaD2wpK50DdYsUMrXEA3PNNJS1M' })
   
 }))
 
