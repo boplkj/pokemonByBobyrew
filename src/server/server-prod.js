@@ -1,13 +1,9 @@
 import { connectDb, getClient } from './db'
 import path from 'path'
 
-import redis from 'redis'
-import connectRedis from 'connect-redis'
 const express = require('express')
 const session = require('express-session')
 const passport = require('passport')
-const redisClient = redis.createClient({host: 'redis-17079.c77.eu-west-1-1.ec2.cloud.redislabs.com', port: 17079, client: redisClient, ttl: 86400, pass:'swalvaD2wpK50DdYsUMrXEA3PNNJS1M' })
-const redisStore  = connectRedis(session)
 const client = getClient()
 
 
@@ -18,19 +14,18 @@ const HTML_FILE = path.join(DIST_DIR, 'index.html')
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(session({
-    secret: 'ThisIsHowYouUseRedisSessionStorage',
-    name: '_redisPractice',
+app.use(
+  session({
+    secret: 'thisIsSecretKeY123',
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
       path: '/',
       httpOnly: true,
       maxAge: 60 * 60 * 1000
-    }, 
-    store: new redisStore({ host: 'redis-17079.c77.eu-west-1-1.ec2.cloud.redislabs.com', port: 17079, client: redisClient, ttl: 86400, pass:'swalvaD2wpK50DdYsUMrXEA3PNNJS1M' })
-    
-  }))
+    }
+  })
+)
   
   require('./config-passport');
   app.use(passport.initialize());
