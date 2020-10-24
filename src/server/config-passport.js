@@ -39,7 +39,7 @@ passport.use(
     {
       clientID:     '7628713',
       clientSecret: 'oTfEvYwEtz6DrPr8UL2d',
-      callbackURL:  "http://localhost:8080/auth/vkontakte/callback"
+      callbackURL:  "https://pokemons-by-bobyrew.herokuapp.com/auth/vkontakte/callback"
     },
 
     function (accessToken, refreshToken, profile, done) {
