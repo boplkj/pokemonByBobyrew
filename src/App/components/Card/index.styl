@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&display=swap')
+
+.pocoCard
+  display flex
+  flex-direction column
+  justify-content center
+  height 320px
+  width 240px
+  border 1px solid black
+  border-radius 8px 
+
+.pocoAvatar
+  border-radius 16px 54px
+
+.pocoName
+  display flex
+  font-size 20px
+  justify-content center
+  margin-top -16px
+  font-family 'Sedgwick Ave Display', cursive;
+  cursor pointer
+
+.pocoType 
+  display flex
+  font-family 'Press Start 2P', cursive
+  font-size 12px
+
+.pocoAvatarImg  
+  width 240px
+  height 224px
+  
+.pocoTypeBox
+  display flex
+  justify-content space-around
+
+.star
+  position absolute
+  z-index 1000
+  width 32px
+  height 32px
+  right 4px
+  top -4px
+  cursor pointer
+
+.flipCardContainer 
+  margin 16px 0 0 16px
+  perspective 1000
+
+ /* переверните сторону */
+.flipCardContainer:hover .flipCard, .flipCardContainer.hover .flipCard 
+  transform rotateY(900deg);
+
+.flipCardContainer, .front, .back 
+  width 240px
+  height 320px
+
+
+/* здесь находится скорость перевертывания */
+.flipCard 
+  transition 1.2s
+  -webkit-transform-style preserve-3d
+  position relative
+
+/* скройте обратную сторону во время переворота */
+.front, .back 
+  -webkit-backface-visibility hidden
+  position absolute
+  top 0
+  left 0
+
+/* лицевая сторона размещена над обратной */
+.front 
+  z-index: 1001
+
+/* обратная, изначально скрытая сторона */
+.back 
+  transform: rotateY(180deg)
+  border 1px solid black
+  border-radius 8px 
+
+.status-bar
+  display flex
+  flex-direction row
+  font-size 150%
+  margin-top 4px
+
+.stats
+  margin: 16px 0 0 48px 
+
+.statsBtn
+  display:flex
+  justify-content: space-around
+  font-family 'Press Start 2P', cursive
+  margin-top auto
+  margin-bottom 8px
+  cursor pointer
+
+
+.typeImg 
+  width 24px
+  height 24px
+  
+.statsInt
+  display flex
+  justify-content center
+  color white 
+  cursor default
+
+  
+.pokoTypes 
+  display flex
+  flex-direction column
+  align-items center
+  justify-content center
+  margin-top 8px
+
+.headerCard 
+  display flex
+  justify-content center
+  align-items center
+  position relative
+  height 32px
+
+.back .headerCard
+  margin-top 8px
+
+  
