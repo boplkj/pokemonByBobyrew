@@ -17,12 +17,10 @@ export default function Auth () {
   
 
  async function sendData(em,pass) {
-console.log(em,pass)
 try{const res = await axios.post(adress, {
   email: em,
   password: pass
 })
-console.log('reponsexx=',res)
 setRedirect(true)
 
 

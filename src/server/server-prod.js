@@ -37,9 +37,7 @@ app.use(express.static(DIST_DIR))
   app.post('/join', async function (req, res, next) {
     const EMAIL_PATTERN = new RegExp("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
     const PASSWORD_PATTERN = new RegExp('^.*(?=.{8,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$')
-    console.log(req.body.email)
     if (req.body.email.match(EMAIL_PATTERN ) && req.body.password.match(PASSWORD_PATTERN)){
-      console.log("allOk")
       let authData = {
         email: req.body.email,
         password: req.body.password
@@ -87,7 +85,6 @@ app.use(express.static(DIST_DIR))
   
   app.post('/login', (req, res, next) => {
     passport.authenticate('local', function(err, user) {
-      console.log(user,'userData')
       if (err) {
         return next(err);
       }
@@ -126,7 +123,6 @@ app.use(express.static(DIST_DIR))
 
   app.post('/remove-pokemon-from-db', function (req, res) {
     const pokemonId = req.body.pokemonId
-    console.log(pokemonId, 'pokeid')
     if (req.isAuthenticated()){
       client.db("pokeapp").collection('users').updateOne({
         _id: req.user._id
@@ -139,7 +135,6 @@ app.use(express.static(DIST_DIR))
 
   app.post('/add-pokemon-to-db', function (req, res) {
     const pokemonId = req.body.pokemonId
-    console.log(pokemonId, 'pokeid')
     if (req.isAuthenticated()){
       client.db("pokeapp").collection('users').updateOne({
         _id: req.user._id
@@ -162,8 +157,6 @@ app.get('/auth/vkontakte', passport.authenticate('vkontakte'))
 
 app.get('/auth/vkontakte/callback', (req, res, next) => {
   passport.authenticate('vkontakte', function (err, user) {
-    console.log('I am in callback')
-    console.log('callback user: ', user)
     if (err) {
       return next(err)
     }

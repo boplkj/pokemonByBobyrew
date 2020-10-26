@@ -39,7 +39,6 @@ export default function CardList({ list, isUserPage }){
     (async function favoriteList () {
       try {
         const { data: _favoriteList } = await axios.get('/favorite-pok')
-        console.log(' _favoriteList: ', _favoriteList)
         setFavoriteList(_favoriteList)
       } catch(error) {
         setFavoriteList([])
@@ -55,7 +54,6 @@ export default function CardList({ list, isUserPage }){
     let tempCurrentPokemons = []
     let start = page * counter +1 - counter
     let end = start + counter
-    console.log(findName,"fname")
     if (isUserPage) {
       setPageCount(Math.ceil(favoriteList.length/ counter))
       setCurrentPokemons(favoriteList.slice(start, end))
@@ -70,7 +68,6 @@ export default function CardList({ list, isUserPage }){
           }
         setCurrentPokemons(tempCurrentPokemons)
         setPageCount(Math.ceil(MAX_POKEMON_INDEX / counter))
-      console.log(' tempCurrentPokemons: ', tempCurrentPokemons)
     }
     else
     {
@@ -83,7 +80,7 @@ export default function CardList({ list, isUserPage }){
             !tempCurrentPokemons.find(name => name === pokemon.pokemon.name) && tempCurrentPokemons.push(pokemon.pokemon.name)
           })
          
-          console.log(pokemons.pokemon.length,tempCurrentPokemons.length, 'dlina' )
+
           //Тут вроде логичнее считать по формуле  либо globalLength = (tempCurrentPokemons.length -1)
         })
         setPageCount(Math.ceil((tempCurrentPokemons.length -1)/counter))
@@ -94,7 +91,6 @@ export default function CardList({ list, isUserPage }){
 
   useEffect(() => {
     let promises = []
-    console.log(' currentPokemons: ', currentPokemons)
     currentPokemons.map(name=>{
       promises.push(P.getPokemonByName(name))
     })
@@ -105,8 +101,6 @@ export default function CardList({ list, isUserPage }){
   }, [JSON.stringify(currentPokemons)])
 
   useEffect(() => {
-    console.log(' pageCount: ', pageCount)
-    console.log(' page: ', page)
     if (page > pageCount && pageCount!== 0 ){
       setPage(pageCount)
     }
@@ -115,7 +109,6 @@ export default function CardList({ list, isUserPage }){
 
 
 function isFavorite(id, favoriteList){
-  console.log('IN FUNC favoriteList: ', favoriteList)
   return _isAuth && !!(favoriteList.length && favoriteList.find(_id=> id===_id ))
 }
   
@@ -139,7 +132,6 @@ function isFavorite(id, favoriteList){
               if (ev.target.value!==""){
               tempCurrentPokemon.push(ev.target.value)
               } else tempCurrentPokemon= []
-              console.log(' tempcurrentPokemon: ', tempCurrentPokemon)
               setFindName(tempCurrentPokemon)
             })
             div.findNameButton( onClick=()=> {
@@ -175,7 +167,6 @@ function isFavorite(id, favoriteList){
               
       
     div.CardList
-      -console.log(' favoriteList: ', favoriteList)
       each pok in pokemons
         Card(
           key=pok.id

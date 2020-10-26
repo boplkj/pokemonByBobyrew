@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './index.styl'
 import logo from '../../../images/pikachu.png'
 import isAuth  from '../../ClientHelpers/hooks/isAuth'
@@ -8,9 +8,6 @@ import {Link} from 'react-router-dom'
 
 export default function Header (){
   const _isAuth = isAuth()
-
-  console.log(_isAuth, 'isAuth')
-  const [showModal,setShowModal] =useState(false)
     return pug `
       div.header
         div.menuHead(title= 'Start Page Link')

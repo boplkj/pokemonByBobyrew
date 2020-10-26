@@ -7,12 +7,10 @@ import { getClient } from './db'
 const client = getClient()
 
 passport.serializeUser(function(user, done) {
-  console.log('Сериализация: ', user);
   done(null, user.email);
 });
 
 passport.deserializeUser(async function(email, done) {
-  console.log('Десериализация: ', email);
   const result =  await client.db("pokeapp").collection("users").findOne({email});
   done(null, result);
 });
@@ -43,7 +41,6 @@ passport.use(
     },
 
     function (accessToken, refreshToken, profile, done) {
-      console.log(' profile: ', profile)
       client.db("pokeapp").collection("users").findOne({
         email: profile.username
       },
@@ -75,38 +72,3 @@ passport.use(
   )
 ) 
 
-
-// import passport from 'passport'
-// import passportLocal from 'passport-local'
-// const LocalStrategy = passportLocal.Strategy;
-
-// const userDB = {
-//   id: 136345,
-//   email: 'test@mail.ru',
-//   password: '123',
-// };
-
-// passport.serializeUser(function(user, done) {
-//   console.log('Сериализация: ', user);
-//   done(null, user.id);
-// });
-
-// passport.deserializeUser(function(id, done) {
-//   console.log('Десериализация: ', id);
-//   const user = userDB.id === id ? userDB : false;
-//   done(null, user);
-// });
-
-// passport.use(
-//   new LocalStrategy({ usernameField: 'email' }, function(
-//     email,
-//     password,
-//     done
-//   ) {
-//     if (email === userDB.email && password === userDB.password) {
-//       return done(null, userDB);
-//     } else {
-//       return done(null, false), console.log(userDB, user, password);
-//     }
-//   })
-// );

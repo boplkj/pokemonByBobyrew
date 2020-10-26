@@ -79,7 +79,6 @@ export default  function  Card({ PokemonInfo, isFavorite, isAuth, trigger, setTr
       case 'fairy':
         return 'hotpink'
     }
-    console.log(typeColor, "from in func")
   }
 
 
@@ -90,7 +89,7 @@ export default  function  Card({ PokemonInfo, isFavorite, isAuth, trigger, setTr
           pokemonId: PokemonInfo.id 
         })
       } catch(error){
-        console.log(error.response.data,"eoro" , error.response)
+        console.log(error.response.data,"error res" , error.response)
       }
     }
     else{
@@ -99,7 +98,7 @@ export default  function  Card({ PokemonInfo, isFavorite, isAuth, trigger, setTr
           pokemonId: PokemonInfo.id 
         })   
       } catch(error){
-        console.log(error.response.data,"eoro" , error.response)
+        console.log(error.response.data,"error res" , error.response)
       }
     }
     setStar(!star)
